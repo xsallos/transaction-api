@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  transactions-db-testing:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_DB=transactions_db_testing
+    ports:
+      - "35432:5432"

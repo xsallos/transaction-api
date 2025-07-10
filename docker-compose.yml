@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  transactions-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=example
+      - POSTGRES_DB=transactions_db
+    ports:
+      - "25432:5432"
+
+  backend:
+    build: .
+    depends_on:
+      - transactions-db
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
