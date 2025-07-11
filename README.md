@@ -6,12 +6,12 @@ The project is based on a modular, layered architecture, with a clear separation
  - Service Layer – business logic is encapsulated in the `TransactionService` class, which can be tested independently from the API layer.
  - Validation Layer – dedicated validation of CSV file structure `TransactionValidator` allows flexible testing and reuse.
  - Persistence Layer – `SQLAlchemy` & `PostgreSQL` as a data storage layer.
- - unit and integration tests – based on pytest, functional tests added as an example 
+ - unit and integration tests – based on pytest, functional tests added as an example.
 
 This approach enables:
 
 - easy testing of each layer in isolation,
-- clean and predictable separation of responsibilities
+- clean and predictable separation of responsibilities,
 - increased readability
 
 ### Tests
