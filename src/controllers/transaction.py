@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile, 
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from ..core.errors import RepositoryOperationalError
+from ..core.errors import RepositoryOperationalError, RepositoryUniqueConstraintError
 from ..transaction.errors import (
     InvalidFileStructure,
     TransactionNotFound,
@@ -94,7 +94,7 @@ async def upload_transaction(
             detail=error.as_dict,
         )
 
-    except RepositoryOperationalError as error:
+    except (RepositoryUniqueConstraintError, RepositoryOperationalError) as error:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=error.as_dict,

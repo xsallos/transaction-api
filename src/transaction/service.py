@@ -115,7 +115,6 @@ class TransactionService:
         )
 
     def create_from_csv(self, content: bytes) -> BulkTransactionResult:
-
         result = self.validator.validate(content=content)
 
         for transaction in result.validated_items:

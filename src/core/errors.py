@@ -39,6 +39,12 @@ class RepositoryError(Error):
     pass
 
 
+class RepositoryUniqueConstraintError(RepositoryError):
+    INTERNAL_CODE = ErrorCode.DATABASE_ERROR
+    DEFAULT_MESSAGE = "Repository constrainst has been violated"
+
+
 class RepositoryOperationalError(RepositoryError):
     INTERNAL_CODE = ErrorCode.DATABASE_ERROR
-    DEFAULT_MESSAGE = "Constraint has been violated"
+    DEFAULT_MESSAGE = "Repository is not operational at the moment"
+

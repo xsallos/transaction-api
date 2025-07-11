@@ -8,7 +8,7 @@ from src.core.database import Base
 class TransactionActiveRecord(Base):
     __tablename__ = "transactions"
 
-    transaction_id = Column(UUID, primary_key=True)
+    transaction_id = Column(UUID, primary_key=True)  # Natural key
 
     timestamp = Column(String, nullable=False)
     amount = Column(Float, nullable=False)
