@@ -19,6 +19,7 @@ uvicorn = "^0.35.0"
 black = "^25.1.0"
 isort = "^6.0.1"
 pytest-dotenv = "^0.5.2"
+pytest-cov = "^6.2.1"
 
 [build-system]
 requires = ["poetry-core"]

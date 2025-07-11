@@ -15,7 +15,7 @@ class TestTransactionValidator:
 
     validator = TransactionValidator()
 
-    def test_validate_success(self):
+    def test_validate_with_valid_data_returns_success(self):
         csv_content, _, _ = generate_csv(valid_headers(), valid_data())
 
         result = self.validator.validate(content=csv_content)
@@ -24,13 +24,13 @@ class TestTransactionValidator:
         assert result.failure == 0
         assert len(result.validated_items) == 2
 
-    def test_invalid_headers(self):
+    def test_validate_with_invalid_headers_raises_error(self):
         csv_content, _, _ = generate_csv(invalid_headers())
 
         with pytest.raises(InvalidFileStructure):
             self.validator.validate(csv_content)
 
-    def test_invalid_data(self):
+    def test_validate_with_invalid_data_returns_multistatus(self):
         csv_content, _, _ = generate_csv(valid_headers(), invalid_data())
         result = self.validator.validate(content=csv_content)
 

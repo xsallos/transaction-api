@@ -4,12 +4,15 @@ __all__ = (
     "valid_data",
     "invalid_data",
     "generate_csv",
+    "generate_transaction",
 )
 
 import csv
 import io
 from typing import Any, Dict, List, Optional, Tuple
-from uuid import uuid4
+from uuid import UUID, uuid4
+
+from src.transaction.models.dto import Currency, Transaction
 
 
 def valid_headers() -> List[str]:
@@ -144,3 +147,23 @@ def generate_csv(headers: List[str], data: Optional[List[Dict]] = None):
         writer.writerows(data)
 
     return output.getvalue().encode(), data, headers
+
+
+def generate_transaction(
+    transaction_id: Optional[UUID] = None,
+    timestamp: Optional[str] = None,
+    amount: Optional[float] = None,
+    currency: Optional[Currency] = None,
+    customer_id: Optional[UUID] = None,
+    product_id: Optional[UUID] = None,
+    quantity: Optional[int] = None,
+) -> Transaction:
+    return Transaction(
+        transaction_id=transaction_id if transaction_id else uuid4(),
+        timestamp=timestamp if timestamp else "2024-01-01T10:00:00Z",
+        amount=amount if amount else 100.0,
+        currency=currency if currency else Currency.USD,
+        customer_id=customer_id if customer_id else uuid4(),
+        product_id=product_id if product_id else uuid4(),
+        quantity=quantity if quantity else 1,
+    )
