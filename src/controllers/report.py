@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/reports/customer-summary/{customer_id}")
-def get_customer_summary(
+async def get_customer_summary(
     customer_id: UUID, service: TransactionService = Depends(get_transaction_service)
 ):
     try:
@@ -23,13 +23,13 @@ def get_customer_summary(
 
     except CustomerSummaryNotFound as error:
         raise HTTPException(
-            status_code=status.HTTP_200_OK,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail=error.as_dict,
         )
 
 
 @router.get("/reports/product-summary/{product_id}")
-def get_product_summary(
+async def get_product_summary(
     product_id: UUID, service: TransactionService = Depends(get_transaction_service)
 ):
     try:
@@ -41,6 +41,6 @@ def get_product_summary(
 
     except ProductSummaryNotFound as error:
         raise HTTPException(
-            status_code=status.HTTP_200_OK,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail=error.as_dict,
         )

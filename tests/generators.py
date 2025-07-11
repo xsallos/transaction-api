@@ -138,7 +138,7 @@ def invalid_data() -> List[Dict[str, Any]]:
     ]
 
 
-def generate_csv(headers: List[str], data: Optional[List[Dict]] = None):
+def generate_csv(headers: List[str], data: Optional[List[Dict]] = None) -> bytes:
     output = io.StringIO()
     writer = csv.DictWriter(output, fieldnames=headers)
     writer.writeheader()
@@ -146,7 +146,7 @@ def generate_csv(headers: List[str], data: Optional[List[Dict]] = None):
     if data:
         writer.writerows(data)
 
-    return output.getvalue().encode(), data, headers
+    return output.getvalue().encode()
 
 
 def generate_transaction(

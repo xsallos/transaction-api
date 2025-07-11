@@ -38,7 +38,7 @@ def truncate_table(db_session):
 
 
 def test_create_from_csv_returns_bulk_transaction_results(service):
-    csv_content, _, _ = generate_csv(valid_headers(), valid_data())
+    csv_content = generate_csv(valid_headers(), valid_data())
 
     result = service.create_from_csv(content=csv_content)
 
